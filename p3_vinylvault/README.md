@@ -20,7 +20,7 @@ The `public` folder only contains assets the user's machine will need to load ou
     <NavBar cartCount=[Number] onOpenCart() /> -> src/components/NavBar.jsx (Sticky: Logo, HomePage link, cart button with item count)
     
     <Routes>
-        <Route path="/" element={<HomePage albums=[Array] addToCart(album) /> -> src/pages/HomePage.jsx} />
+        <Route path="/" element={<HomePage albums=[Array] addToCart(album) /> -> src/pages/HomePage.jsx (Owns: selectedGenre [Array])} />
             <div className="home-container">
                 <header className="catalog-hero">
                 <div className="filter-bar"> (Button group to update selected genre, rendered with .map() iterator)
@@ -30,7 +30,7 @@ The `public` folder only contains assets the user's machine will need to load ou
                     <Link className="album-img-link" to={`/albums/${album.id}`} />
                     <div className="album-body">
 
-        <Route path="/albums/:albumID" element={<AlbumPage albums=[Array] addToCart(album) /> -> src/pages/AlbumPage.jsx} />
+        <Route path="/albums/:albumID" element={<AlbumPage albums=[Array] addToCart(album) /> -> src/pages/AlbumPage.jsx (Owns: qty [Number])} />
             <div className="album-container">
                 <nav className="breadcrumb-nav"> (Breadcrumb navigation bar)
 
@@ -38,7 +38,7 @@ The `public` folder only contains assets the user's machine will need to load ou
                     <div className="details-info">
                     <div className="details-actions"> (Controls to increase/decrease quantity and add to cart)
     
-        <Route path="/checkout" element={<CheckoutPage cart=[Array] clearCart() /> -> src/pages/CheckoutPage.jsx} />
+        <Route path="/checkout" element={<CheckoutPage cart=[Array] clearCart() /> -> src/pages/CheckoutPage.jsx (Owns: isSubmitted [Boolean], formData [Object])} />
             <div className="cart-empty"> (Renders only if checkout page is accessed while cart empty)
                 <Link className="btn btn-secondary" to="/" />
             
