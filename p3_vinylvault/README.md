@@ -17,7 +17,7 @@ The `public` folder only contains assets the user's machine will need to load ou
 
 ```text
 <App /> -> src/App.jsx (Owns: cart [Array] , isCartOpen [Boolean])
-    <NavBar cartCount=[Number] onOpenCart() /> -> src/components/NavBar.jsx (Sticky: Logo, HomePage link, cart button with item count)
+    <NavBar cartCount=[Number] openCart() /> -> src/components/NavBar.jsx (Sticky: Logo, HomePage link, cart button with item count)
     
     <Routes>
         <Route path="/" element={<HomePage albums=[Array] addToCart(album) /> -> src/pages/HomePage.jsx (Owns: selectedGenre [Array])} />
@@ -67,7 +67,7 @@ The `public` folder only contains assets the user's machine will need to load ou
                         <li className="cart-item" key={item.id}> (Rendered with .map() iterator)
                             <div className="item-info">
                                 <div className="qty-controls"> (Controls to increase/decrease quantity of item in cart)
-                                
+
                 <div className="drawer-footer"> (Renders only if cart is not empty)
                     <div className="subtotal-row">
                     <button className="btn btn-primary btn-block" type="button" onClick> (Uses the useNavigate hook to automatically redirect to the checkout page)

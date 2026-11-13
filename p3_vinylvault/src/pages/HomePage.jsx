@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AlbumCard from '../components/AlbumCard';
 
 const HomePage = ({ albums, addToCart}) => {
     const genres = ["All", "Jazz", "Electronic", "Rock", "Classical"];
@@ -6,7 +7,7 @@ const HomePage = ({ albums, addToCart}) => {
 
     const validAlbums = albums || [];
 
-    const filteredAlbums = selectedGenre === "All" ? validAlbums : validAlbums.filter((p) => p.genre === selectedGenre);
+    const filteredAlbums = selectedGenre === "All" ? validAlbums : validAlbums.filter((a) => a.genre === selectedGenre);
 
     return (
         <div className="home-container">
