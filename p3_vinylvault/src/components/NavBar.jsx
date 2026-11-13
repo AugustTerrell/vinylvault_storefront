@@ -12,7 +12,7 @@ const NavBar = ({ cartCount, openCart }) => {
                     type="button"
                     onClick={openCart}
                     aria-label={`Your cart (contains ${cartCount} items).`}
-                >&#x1F6D2; Cart</button>
+                >&#x1F6D2; Cart {cartCount > 0 && <span className="badge-pill">{cartCount}</span>}</button>
             </nav>
         </header>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const CheckoutPage = (cart, clearCart) => {
+const CheckoutPage = ({ cart, clearCart }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -24,6 +24,16 @@ const CheckoutPage = (cart, clearCart) => {
         clearCart();
     }
 
+    if (isSubmitted) {
+        return (
+            <div className="checkout-success">
+                <h2>&#x1F389; Order Placed Successfully</h2>
+                <p className="success-text">Thanks for your purchase, {formData.name}! A confirmation email has been sent to {formData.email}.</p>
+                <Link className="btn btn-primary" to="/"> Return to Home</Link>
+            </div>
+        );
+    }
+
     if (cart.length === 0) {
         return (
             <div className="cart-empty">
@@ -33,21 +43,11 @@ const CheckoutPage = (cart, clearCart) => {
         );
     }
 
-    if (isSubmitted) {
-        return (
-            <div className="checkout-success">
-                <h2>Order Placed Successfully</h2>
-                <p>Thanks for your purchase, {formData.name}! A confirmation email has been sent to {formData.email}.</p>
-                <Link className="btn btn-primary" to="/"> Return to Home</Link>
-            </div>
-        );
-    }
-
     return (
         <div className="checkout-container">
             <h1>Checkout and Order Confirmation</h1>
 
-            <div className="checkout-grid">
+            <div className="page-grid checkout">
                 <form className="checkout-form" onSubmit={handleSubmit}>
                     <h2>Shipping Details</h2>
 
@@ -98,6 +98,7 @@ const CheckoutPage = (cart, clearCart) => {
                             id="zip"
                             className="form-input"
                             value={formData.zip}
+                            pattern="[0-9]{5}"
                             onChange={handleChange}
                             required
                         />
@@ -111,7 +112,7 @@ const CheckoutPage = (cart, clearCart) => {
 
                     <ul className="summary-list">
                         {cart.map((item) => (
-                            <li className="summary-row">
+                            <li className="summary-row" key={item.id}>
                                 <span>{item.title} &times; {item.quantity}</span>
                                 <span>${(item.price * item.quantity).toFixed(2)}</span>
                             </li>

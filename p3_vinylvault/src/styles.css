@@ -28,6 +28,7 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: fit-content;
   font-weight: 600;
   text-decoration: none;
   padding: 0.6rem 1.2rem;
@@ -46,7 +47,7 @@ html {
 }
 
 .btn-secondary {
-  background-color: transparent;
+  background-color: var(--bg-card);
   color: var(--text);
   border-color: var(--border);
 }
@@ -135,12 +136,14 @@ html {
 
 .filter-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
   margin-bottom: 2.5rem;
 }
 
 .filter-pill {
+  color: var(--text);
   background-color: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 9999px;
@@ -151,7 +154,7 @@ html {
   transition: all 0.2s;
 }
 
-.filter-pill.active {
+.filter-pill.active, .filter-pill:hover {
   background-color: var(--primary);
   color: var(--bg-card);
   border-color: var(--primary);
@@ -246,6 +249,7 @@ html {
 }
 
 .btn-close {
+  color: var(--text);
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -288,8 +292,18 @@ html {
 .qty-controls {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin-top: 0.5rem;
+}
+
+.qty-btn {
+  color: var(--bg-card);
+  background-color: var(--primary);
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  padding: 0.15rem 0.35rem;
+  cursor: pointer;
 }
 
 .btn-remove {
@@ -314,12 +328,16 @@ html {
 }
 
 /* Detail & checkout grids */
-.details-grid, .checkout-grid {
+.page-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 3rem;
   margin-top: 1.5rem;
+}
+
+.page-grid.checkout {
+  align-items: flex-start;
 }
 
 /* AlbumPage */
@@ -382,6 +400,12 @@ html {
 }
 
 /* CheckoutPage */
+.checkout-form {
+  background-color: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -395,6 +419,10 @@ html {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 0.65rem;
+}
+
+.required-star {
+  color: var(--primary);
 }
 
 .order-summary {
@@ -417,9 +445,26 @@ html {
   margin-top: 0.5rem;
 }
 
+.cart-empty, .checkout-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  margin-top: 8rem;
+}
+
+.success-text {
+  color: var(--muted);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
-  .details-grid, .checkout-grid {
+  .page-grid {
     grid-template-columns: 1fr;
+  }
+
+  .btn-primary {
+    width: 100%;
   }
 }

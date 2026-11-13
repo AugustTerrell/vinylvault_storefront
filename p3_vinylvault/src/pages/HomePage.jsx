@@ -17,13 +17,13 @@ const HomePage = ({ albums, addToCart}) => {
             </div>
 
             <div className="filter-bar">
-                {genres.map((genre) => {
+                {genres.map((genre) => (
                     <button 
                         className={`filter-pill ${selectedGenre === genre ? "active" : ""}`}
                         key={genre}
                         onClick={() => setSelectedGenre(genre)}
                     >{genre}</button>
-                })}
+                ))}
             </div>
 
             <div className="album-grid">

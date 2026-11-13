@@ -22,7 +22,7 @@ const AlbumPage = ({ albums, addToCart }) => {
                 <Link className="breadcrumb-link" to="/">Catalog</Link> &gt; <span>{album.title}</span>
             </nav>
 
-            <div className="details-grid">
+            <div className="page-grid">
                 <img className="details-img" src={album.image} alt={album.title} />
 
                 <div className="details-info">
@@ -42,7 +42,7 @@ const AlbumPage = ({ albums, addToCart }) => {
                     </div>
 
                     <div className="stock-tag">
-                        {album.stock > 0 ? "✔ In Stock (" + album.stock + " units available)" : "Out of Stock"}
+                        {album.stock > 0 ? `✔ In Stock (${album.stock} units available)` : "Out of Stock"}
                     </div>
 
                     <div className="details-actions">
