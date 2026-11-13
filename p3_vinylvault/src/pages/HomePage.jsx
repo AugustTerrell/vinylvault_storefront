@@ -12,8 +12,8 @@ const HomePage = ({ albums, addToCart}) => {
     return (
         <div className="home-container">
             <div className="home-hero">
-                <h1>High-Quality Vintage Records</h1>
-                <p>Albums of every genre collected and carefully preserved</p>
+                <h1 className="home-title">High-Quality Vintage Records</h1>
+                <p className="home-subtitle">Albums of every genre collected and carefully preserved.</p>
             </div>
 
             <div className="filter-bar">

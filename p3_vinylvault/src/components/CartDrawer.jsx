@@ -23,7 +23,7 @@ const CartDrawer = ({ cart, isOpen, onClose, onUpdateQty, onRemove}) => {
 
                 <div className="drawer-body">
                     {cart.length === 0 ? (
-                        <div className="empty-cart">Your cart is currently empty</div>
+                        <div className="empty-cart">Your cart is currently empty.</div>
                     ) : (
                         <ul className="cart-list">
                             {cart.map((item) => (

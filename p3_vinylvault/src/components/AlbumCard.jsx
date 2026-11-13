@@ -16,7 +16,7 @@ const AlbumCard = ({ album, addToCart }) => {
                     <Link to={`/albums/${album.id}`}>{album.title}</Link>
                 </h3>
                 <p className="album-price">${typeof album.price === "number" ? album.price.toFixed(2) : "Contact For Price"}</p>
-                <button className="btn tbn-secondary btn-block" type="button" onClick={() => addToCart(album)}>Add To Cart</button>
+                <button className="btn btn-secondary btn-block cart-btn" type="button" onClick={() => addToCart(album)}>Add To Cart</button>
             </div>
         </article>
     );

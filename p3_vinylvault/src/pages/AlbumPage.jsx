@@ -19,7 +19,7 @@ const AlbumPage = ({ albums, addToCart }) => {
     return (
         <div className="album-container">
             <nav className="breadcrumb-nav">
-                <Link to="/">Catalog</Link> &gt; <span>{album.title}</span>
+                <Link className="breadcrumb-link" to="/">Catalog</Link> &gt; <span>{album.title}</span>
             </nav>
 
             <div className="details-grid">
@@ -28,10 +28,21 @@ const AlbumPage = ({ albums, addToCart }) => {
                 <div className="details-info">
                     <span className="details-genre">{album.genre}</span>
                     <h2 className="details-title">{album.title}</h2>
-                    <p className="details-price">{album.price.toFixed(2)}</p>
+                    <p className="details-price">${album.price.toFixed(2)}</p>
                     <p className="details-desc">{album.description}</p>
+
+                    <div className="details-specs">
+                        <p className="specs-title">Album Details:</p>
+                        <ul className="specs-list">
+                            <li className="specs-item">Pressing Weight: {album.specs.weight}</li>
+                            <li className="specs-item">Catalog Number: {album.specs.catalogNumber}</li>
+                            <li className="specs-item">Speed: {album.specs.speed}</li>
+                            <li className="specs-item">Producer Label: {album.specs.label}</li>
+                        </ul>
+                    </div>
+
                     <div className="stock-tag">
-                        {album.stock > 0 ? "&#x2714; In Stock ({product.stock} units available)" : "Out of Stock"}
+                        {album.stock > 0 ? "✔ In Stock (" + album.stock + " units available)" : "Out of Stock"}
                     </div>
 
                     <div className="details-actions">
@@ -40,6 +51,7 @@ const AlbumPage = ({ albums, addToCart }) => {
                             <input
                                 type="number"
                                 id="details-qty"
+                                className="qty-input"
                                 min="1"
                                 max={album.stock}
                                 value={qty}
