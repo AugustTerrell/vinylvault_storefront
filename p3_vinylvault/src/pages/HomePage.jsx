@@ -19,7 +19,7 @@ const HomePage = ({ albums, addToCart}) => {
             <div className="filter-bar">
                 {genres.map((genre) => {
                     <button 
-                        className={`filter-pill ${selectedGenre === cat ? "active" : ""}`}
+                        className={`filter-pill ${selectedGenre === genre ? "active" : ""}`}
                         key={genre}
                         onClick={() => setSelectedGenre(genre)}
                     >{genre}</button>
