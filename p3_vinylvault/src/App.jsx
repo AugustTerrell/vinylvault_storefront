@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import AlbumPage from './pages/AlbumPage'
-import CheckoutPage from './pages/CheckoutPage';
-import NavBar from './components/NavBar';
-import CartDrawer from './components/CartDrawer';
-import { ALBUMS } from './data/albums';
+import HomePage from './pages/HomePage.jsx';
+import AlbumPage from './pages/AlbumPage.jsx'
+import CheckoutPage from './pages/CheckoutPage.jsx';
+import NavBar from './components/NavBar.jsx';
+import CartDrawer from './components/CartDrawer.jsx';
+import { ALBUMS } from './data/albums.js';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -18,8 +18,8 @@ const App = () => {
       if (exists) {
         return prevCart.map((item) => item.id === album.id ? { ...item, quantity: item.quantity + qty} : item);
       }
-
-      return [...prevCart, { ...album, quantity: album.quantity + qty }];
+      
+      return [...prevCart, { ...album, quantity: qty }];
     });
 
     setIsCartOpen(true);

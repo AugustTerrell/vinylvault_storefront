@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const AlbumPage = ({ albums, addToCart }) => {
-    const albumID = useParams();
+    const { albumID } = useParams();
     const [ qty, setQty ] = useState(1);
 
     const album = albums.find((a) => a.id === albumID);
@@ -46,7 +46,7 @@ const AlbumPage = ({ albums, addToCart }) => {
                                 onChange={(e) => setQty(Math.max(1, parseInt(e.target.value, 10) || 1))}
                             />
                         </div>
-                        <button className="btn btn-primary" onClick={addToCart(album, qty)}>Add {qty} to cart</button>
+                        <button className="btn btn-primary" onClick={() => addToCart(album, qty)}>Add {qty} to cart</button>
                     </div>
                 </div>
             </div>

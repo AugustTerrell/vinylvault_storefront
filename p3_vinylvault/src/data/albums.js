@@ -1,4 +1,3 @@
-// This file must be present inside: /src/data/albums.js
 export const ALBUMS = [
   {
     id: "alb-01",
