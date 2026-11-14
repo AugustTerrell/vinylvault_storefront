@@ -11,13 +11,20 @@
 
 ### Project Directory Structure
 
-The `public` folder only contains assets the user's machine will need to load outside of the website (i.e. the favicon), while the `src` folder contains all custom code. Within `src`, the `assets` and `data` folders contain media and data needed within the site, and the `components` and `pages` folders contain the .jsx files used to render the site's actual content. The `App.jsx` file serves as a "staging area" for the pages and components, and the `main.jsx` file, which references `App.jsx`, is referenced by index.html and processed into JavaScript, which is then transformed into HTML content.
+The `public` folder contains assets the user's machine will need to load outside of the website (i.e. the favicon), while the `src` folder contains all custom code - including the `data` folder, which holds a list of album objects used to populate the website.
+Within `src`, the `pages` folder contains `HomePage`, `AlbumPage`, and `CheckoutPage`, which render content for the main page of the site, the details pages for the various albums, and the page where the user completes their transaction.
+Similarly, the `components` folder contains `AlbumCard`, `NavBar`, and `CartDrawer`, which render the dynamic album cards on the homepage, and render the site header and cart panel across pages.
+Finally, the `App.jsx` file serves as a "staging area" for the pages and components, and the `main.jsx` file, which references `App.jsx`, is referenced by index.html and processed into JavaScript, which is then transformed into HTML content.
 
 ## React Component Hierarchy & State Flow Architecture
 
 ```text
 <App /> -> src/App.jsx (Owns: cart [Array] , isCartOpen [Boolean])
     <NavBar cartCount=[Number] openCart() /> -> src/components/NavBar.jsx (Sticky: Logo, HomePage link, cart button with item count)
+        <Link className="brand-logo" to="/">
+
+        <nav className="nav-actions">
+            <Link className="nav-link" to="/">
     
     <Routes>
         <Route path="/" element={<HomePage albums=[Array] addToCart(album) /> -> src/pages/HomePage.jsx (Owns: selectedGenre [Array])} />
@@ -35,21 +42,21 @@ The `public` folder only contains assets the user's machine will need to load ou
             <div className="album-container">
                 <nav className="breadcrumb-nav"> (Breadcrumb navigation bar)
 
-                <div className="details-grid"> (CSS grid of information & actions for the specified album)
+                <div className="page-grid"> (CSS grid of image, information, & actions for the specified album)
                     <div className="details-info">
-                    <div className="details-actions"> (Controls to increase/decrease quantity and add to cart)
+                        <div className="details-specs">
+                        <div className="details-actions"> (Controls to increase/decrease quantity and add to cart)
     
         <Route path="/checkout" element={<CheckoutPage cart=[Array] clearCart() /> -> src/pages/CheckoutPage.jsx (Owns: isSubmitted [Boolean], formData [Object])} />
             <div className="cart-empty"> (Renders only if checkout page is accessed while cart empty)
                 <Link className="btn btn-secondary" to="/" />
             
             <div className="checkout-container"> (Default content if cart not empty and form not submitted) 
-                <div className="checkout-grid"> (CSS grid for form and order summary)
+                <div className="page-grid checkout"> (CSS grid for form and order summary)
                     <form className="checkout-form"> (React web form for customer details)
                     <aside className="order-summary">
-                        <ul className="item-list"> (List of items to be purchased)
+                        <ul className="summary-list"> (List of items to be purchased)
                             <li className="summary-row" key={item.id}> (Rendered with .map() iterator)
-                        <div className="summary-row"> (x3, for subtotal, tax, and total)
 
             <div className="checkout-success"> (Renders when checkout form is submitted)
                 <Link className="btn btn-primary" to="/" />
@@ -57,7 +64,7 @@ The `public` folder only contains assets the user's machine will need to load ou
 
     <CartDrawer cart=[Array] isOpen=[Boolean] onClose() onUpdateQty(albumID, qty) onRemove(albumID) /> -> src/components/CartDrawer.jsx
         <div className="drawer-overlay" onClick={onClose()}>
-            <aside className="drawer-panel" onClick> (Stop event bubbling to prevent cart from closing when clicked on)
+            <aside className="drawer-panel" onClick={(e) => e.stopPropagation()}> (Halt event bubbling to keep cart from closing when clicked on)
                 <div className="drawer-header">
 
                 <div className="drawer-body">
@@ -70,5 +77,6 @@ The `public` folder only contains assets the user's machine will need to load ou
 
                 <div className="drawer-footer"> (Renders only if cart is not empty)
                     <div className="subtotal-row">
-                    <button className="btn btn-primary btn-block" type="button" onClick> (Uses the useNavigate hook to automatically redirect to the checkout page)
+                    
+                    <button className="btn btn-primary btn-block" type="button" onClick={toCheckout}> (Uses the useNavigate hook to automatically redirect to the checkout page)
 ```
